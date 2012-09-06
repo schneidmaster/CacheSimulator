@@ -1,0 +1,190 @@
+<!-- 
+2-Way Set Associative Cache Simulator
+Zach Schneider
+CS3210
+-->
+
+<!-- Basic doctype info for the browser -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	
+	<!-- Page title -->
+	<title>2-Way Set Associative Cache Simulator</title>
+	
+	<!-- Importing the stylesheet -->
+	<style>
+	@import url(style.css);
+	</style>
+	
+	<!-- Importing JavaScript Functions -->
+	<script src="functions.js"></script>
+	
+	<!-- Importing a Google webfont -->
+	<link href='http://fonts.googleapis.com/css?family=Pontano+Sans' rel='stylesheet' type='text/css'>
+</head>
+
+<!-- Beginning the body -->
+<body>
+	<!-- Main box -->
+	<div id='main'>
+		<!-- Box for name and class info -->
+		<div id='name'>
+			<div id='nametext'>
+				Zach Schneider - 2-Way Set Associative Cache Simulator - CS3210
+			</div>
+		</div>
+		
+		<!-- Table for the memory display -->
+		<div id='memTable'>
+			<!-- 16 rows to display the memory values -->
+			<div class='tableRow'>
+				<b>Memory</b>
+			</div>
+			<div class='tableRow'>
+				<div id='00' class='tableElement'>00</div>
+				<div id='16' class='tableElement'>16</div>
+				<div id='32' class='tableElement'>32</div>
+				<div id='48' class='tableElement'>48</div>
+			</div>
+			<div class='tableRow'>
+				<div id='01' class='tableElement'>01</div>
+				<div id='17' class='tableElement'>17</div>
+				<div id='33' class='tableElement'>33</div>
+				<div id='49' class='tableElement'>49</div>
+			</div>
+			<div class='tableRow'>
+				<div id='02' class='tableElement'>02</div>
+				<div id='18' class='tableElement'>18</div>
+				<div id='34' class='tableElement'>34</div>
+				<div id='50' class='tableElement'>50</div>
+			</div>
+			<div class='tableRow'>
+				<div id='03' class='tableElement'>03</div>
+				<div id='19' class='tableElement'>19</div>
+				<div id='35' class='tableElement'>35</div>
+				<div id='51' class='tableElement'>51</div>
+			</div>
+			<div class='tableRow'>
+				<div id='04' class='tableElement'>04</div>
+				<div id='20' class='tableElement'>20</div>
+				<div id='36' class='tableElement'>36</div>
+				<div id='52' class='tableElement'>52</div>
+			</div>
+			<div class='tableRow'>
+				<div id='05' class='tableElement'>05</div>
+				<div id='21' class='tableElement'>21</div>
+				<div id='37' class='tableElement'>37</div>
+				<div id='53' class='tableElement'>53</div>
+			</div>
+			<div class='tableRow'>
+				<div id='06' class='tableElement'>06</div>
+				<div id='22' class='tableElement'>22</div>
+				<div id='38' class='tableElement'>38</div>
+				<div id='54' class='tableElement'>54</div>
+			</div>
+			<div class='tableRow'>
+				<div id='07' class='tableElement'>07</div>
+				<div id='23' class='tableElement'>23</div>
+				<div id='39' class='tableElement'>39</div>
+				<div id='55' class='tableElement'>55</div>
+			</div>
+			<div class='tableRow'>
+				<div id='08' class='tableElement'>08</div>
+				<div id='24' class='tableElement'>24</div>
+				<div id='40' class='tableElement'>40</div>
+				<div id='56' class='tableElement'>56</div>
+			</div>
+			<div class='tableRow'>
+				<div id='09' class='tableElement'>09</div>
+				<div id='25' class='tableElement'>25</div>
+				<div id='41' class='tableElement'>41</div>
+				<div id='57' class='tableElement'>57</div>
+			</div>
+			<div class='tableRow'>
+				<div id='10' class='tableElement'>10</div>
+				<div id='26' class='tableElement'>26</div>
+				<div id='42' class='tableElement'>42</div>
+				<div id='58' class='tableElement'>58</div>
+			</div>
+			<div class='tableRow'>
+				<div id='11' class='tableElement'>11</div>
+				<div id='27' class='tableElement'>27</div>
+				<div id='43' class='tableElement'>43</div>
+				<div id='59' class='tableElement'>59</div>
+			</div>
+			<div class='tableRow'>
+				<div id='12' class='tableElement'>12</div>
+				<div id='28' class='tableElement'>28</div>
+				<div id='44' class='tableElement'>44</div>
+				<div id='60' class='tableElement'>60</div>
+			</div>
+			<div class='tableRow'>
+				<div id='13' class='tableElement'>13</div>
+				<div id='29' class='tableElement'>29</div>
+				<div id='45' class='tableElement'>45</div>
+				<div id='61' class='tableElement'>61</div>
+			</div>
+			<div class='tableRow'>
+				<div id='14' class='tableElement'>14</div>
+				<div id='30' class='tableElement'>30</div>
+				<div id='46' class='tableElement'>46</div>
+				<div id='62' class='tableElement'>62</div>
+			</div>
+			<div class='tableRow'>
+				<div id='15' class='tableElement'>15</div>
+				<div id='31' class='tableElement'>31</div>
+				<div id='47' class='tableElement'>47</div>
+				<div id='63' class='tableElement'>63</div>
+			</div>
+		</div>
+		
+		<!-- Table for the cache -->
+		<div id='cacheTable'>
+			<!-- 4 rows for the cache, along with identifier cell -->
+			<div class='tableRow'>
+				<b>Cache</b>
+			</div>
+			<div class='tableRow'>
+				<div class='tableElement'>
+					<b>0-15</b>
+				</div>
+				<div id='cache0' class='tableElement'>[Empty]</div>
+				<div id='cache1' class='tableElement'>[Empty]</div>
+			</div><br />
+			<div class='tableRow'>
+				<div class='tableElement'>
+					<b>16-31</b>
+				</div>
+				<div id='cache2' class='tableElement'>[Empty]</div>
+				<div id='cache3' class='tableElement'>[Empty]</div>
+			</div>
+			<div class='tableRow'>
+				<div class='tableElement'>
+					<b>32-47</b>
+				</div>
+				<div id='cache4' class='tableElement'>[Empty]</div>
+				<div id='cache5' class='tableElement'>[Empty]</div>
+			</div>
+			<div class='tableRow'>
+				<div class='tableElement'>
+					<b>48-63</b>
+				</div>
+				<div id='cache6' class='tableElement'>[Empty]</div>
+				<div id='cache7' class='tableElement'>[Empty]</div>
+			</div>
+		</div>
+		
+		<!-- Block for user interface -->
+		<div id='user'>
+			<br />
+			<b>Enter next memory value:</b>
+			<br />
+			<input type="text" id="inputValue" />
+			<input type='submit' value='Go!' onClick='input();'/>
+			<input type='submit' value='Reset' onClick='reset();'/>
+			<br />
+			<div id='message'></div>
+		</div>
+	</div>
+</body>
